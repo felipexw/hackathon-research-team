@@ -1,16 +1,14 @@
-const http = require('http');
+var express = require('express');
+var app = express();
+var path = require('path');
 
-const finalhandler = require('finalhandler');
-const serveStatic = require('serve-static');
+app.use('/vendor', express.static(__dirname + '/node_modules'));
+app.use('/', express.static(__dirname + '/src'));
 
-const serve = serveStatic("./src");
-const port = 8081;
-
-const server = http.createServer((req, res) => {
-    const done = finalhandler(req, res);
-    serve(req, res, done);
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/src/index.html'));
 });
 
-server.listen(port, function(){
-    console.log('listening on port ' + port)
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
 });

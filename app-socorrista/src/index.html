@@ -1,22 +1,46 @@
-<!DOCTYPE html>
-<html lang="en" ng-app>
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"> 
-        
-    </head>
-    <body>
-        <!--script src="../node_modules/bootstrap/js/"></script-->
-        <script src="../node_modules/angular/angular.js"></script>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                <div class="alert alert-info">asdfasdfasdfasdfasdfasfdasdfasdfasdf</div>
+<html>
+
+<head>
+
+    <link href="/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        window.onload = function (e) {
+            recognition.start();
+            speak("Olá! Eu sou a Sara, posso lhe ajudar no pedido de emergência e apresentar seu histórico médico!");
+        }
+    </script>
+    <style>
+        @media (min-width: 768px) {
+            .b-col {
+                float: right;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="emergency col-sm-7">
+                <p>EMERGÊNCIA</p>
             </div>
+            <div class="col-sm-5 b-col" style="background: blue; height: 600px;">
+                <p>B</p>
+            </div>
+            <div class="col-sm-7" style="background: red; height: 200px;">
+                <p>C</p>
+            </div>
+            <div class="col-sm-7" style="background: yellow; height: 200px;">
+                <p>D</p>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+    <script src="js/recognition.js"></script>
+    <script src="js/synthesis.js"></script>
+</body>
 
+</html>

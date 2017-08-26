@@ -2,7 +2,7 @@ const myApp = angular.module('app-socorrista', []);
 
 myApp.controller('AppCtrl', ['$scope', '$http', ($scope, $http) => {
     let vm = this
-
+    vm.showInfo = false
 
 
     function getAlerts() {
@@ -14,6 +14,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', ($scope, $http) => {
             getAlerts()
                 .then(function (response) {
                     vm.somebodyNeedHelp = response.data.hasAlert
+                    vm.showInfo = !vm.somebodyNeedHelp
                 })
         }, 3000)
     }, 3000)
@@ -21,51 +22,3 @@ myApp.controller('AppCtrl', ['$scope', '$http', ($scope, $http) => {
 
     return vm
 }])
-
-/**
- * vm.test = 'w21'
-
-    registerwebSocketSocorrista()
-
-    function registerwebSocketSocorrista() {
-        vm.webSocketSocorrista = new WebSocket("ws://localhost:3443", "echo-protocol");
-        vm.webSocketPaciente = new WebSocket("ws://localhost:3443", "echo-protocol");
-
-        vm.webSocketSocorrista.onopen = function () {
-            console.log('conexao aberta')
-        };
-
-        vm.webSocketPaciente.onopen = function () {
-            console.log('conexao aberta')
-        };
-
-        vm.webSocketPaciente.onmessage = function (evt) {
-            console.log('conexao onmessage')
-            vm.somebodyNeedHelp = true
-        };
-
-        vm.webSocketSocorrista.onerror = function (evt) {
-            console.log('onerror')
-        };
-
-        vm.webSocketPaciente.onerror = function (evt) {
-            console.log('onerror')
-        };
-    }
-    const firstTime = true
-
-    function sendMessage() {
-        // if (firstTime) {
-        //     vm.webSocketPaciente.send({
-        //         from: 'paciente',
-        //         content: 'asdfasdfasdf'
-        //     })
-        //     firstTime= false
-        // }
-        console.log('websocket sedMessage')
-        vm.webSocketPaciente.send({
-            from: 'paciente',
-            content: 'Test'
-        })
-    }
- */

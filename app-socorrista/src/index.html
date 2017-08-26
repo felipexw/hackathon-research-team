@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div ng-include="'patientDetail2.html'"></div>
+    <div ng-if="!vm.somebodyNeedHelp" ng-include="'patientDetail2.html'"></div>
 
 </body>
 

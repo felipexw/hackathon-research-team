@@ -101,6 +101,7 @@ var httpsWS = require('http');
 
 var connections  = 1;
 var clients = {};
+var socorrista = null;
 
 var chatClient;
 var remoteControlClient;
@@ -155,8 +156,6 @@ wsServer.on('request', function(request) {
 	var clientId = connections;
 	clients[clientId] = connection;
     connections++;
-    
-    var socorrista = null;
 
 	//registrar um callback na função de recebimento do webservice
     log('Connection accepted - clientId: ' + clientId);

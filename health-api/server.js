@@ -8,17 +8,25 @@ var express = require('express'),
     moment = require('moment'),
     request = require('request'),
     ip = require('ip'),
-    https = require('https'),
-    os = require("os");
+    http = require('http'),
+    //https = require('https'),
+    os = require("os"),
+    Heartbeat = require('./heartbeat.js');
 
 var httpPort = 8080;
+var app = express();
+var heartbeat = new Heartbeat();
+
+//var options = {
+//    key: fs.readFileSync('privkey.pem'),
+//    cert: fs.readFileSync('cert.pem')
+//};
 var websocketPort = 3443;
 var app = express();
 
 function log(message) {
 	console.log('app.js: ' + new Date().toUTCString(), message);
 }
-
 
 app.set('port', httpPort);
 app.set('host', process.env.NODE_IP || 'localhost');
@@ -37,6 +45,31 @@ app.get('/api/ping', function(request, response) {
 });
 
 app.get('/api/server', function(request, response) {
+    return response.json({
+          "statusCode": 200,
+          "message": os.hostname() + ' - Internal IP ' + ip.address()
+    });
+});
+
+app.post('/api/heartbeat/arrhythmia', function(request, response) {
+    heartbeat.startArrhythmia();
+    return response.json({
+          "statusCode": 200,
+          "message": os.hostname() + ' - Internal IP ' + ip.address()
+    });
+});
+
+app.post('/api/heartbeat/bradycardia', function(request, response) {
+    heartbeat.startBradycardia();
+    return response.json({
+          "statusCode": 200,
+          "message": os.hostname() + ' - Internal IP ' + ip.address()
+    });
+});
+
+
+app.post('/api/heartbeat/normal', function(request, response) {
+    heartbeat.startNormal();
     return response.json({
           "statusCode": 200,
           "message": os.hostname() + ' - Internal IP ' + ip.address()
@@ -179,7 +212,7 @@ var processChatMsg = function(message, connection) {
 //    console.log(ip.address() + ' listening at ' +  httpPort);
 //});
 
-
-app.listen(httpPort, function(){
-    console.log('LISTENING 8080')
-})
+http.createServer(app).listen(httpPort, function(){
+    console.log(ip.address() + ' listening at ' +  httpPort);
+    heartbeat.simulate();
+});

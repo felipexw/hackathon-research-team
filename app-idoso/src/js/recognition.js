@@ -31,6 +31,12 @@ recognition.onresult = function(event) {
             if (result.match(/comprar/ig) || result.match(/faltando/ig)) {
                 speak("No momento você não tem remédios faltando.");
             }
+
+                     // devo comprar remédio
+            // está faltando medicamentos
+            if (result.match(/visita/ig) || result.match(/consulta/ig)) {
+                speak("Sua Próxima consulta é Segunda feira dia vinte e oito às quatorze horas.");
+            }
         } 
     }
 };

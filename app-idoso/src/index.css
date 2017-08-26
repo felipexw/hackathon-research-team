@@ -1,6 +1,18 @@
 .emergency {
     background: brown;
     height: 200px;
+    padding: 20px;
+}
+
+#medicine {
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    width: 100%;
+    height: 180px;
+}
+
+p {
+    font-size: 20px;
 }
 
 /**
@@ -64,7 +76,7 @@ a.button {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 80px;
+    font-size: 60px;
 }
     
 a.button:hover {

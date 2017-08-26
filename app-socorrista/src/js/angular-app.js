@@ -1,33 +1,71 @@
 const myApp = angular.module('app-socorrista', []);
 
-
-function sendMessage(message) {
-    document.getElementById("output").innerHTML += "<p>> SENT: " + message + "</p>";
-
-    websocket.send(message);
-}
-
-myApp.controller('AppCtrl', ['$scope', ($scope) => {
+myApp.controller('AppCtrl', ['$scope', '$http', ($scope, $http) => {
     let vm = this
 
-    vm.test = 'w21'
 
-    function registerWebsocket() {
-        websocket = new WebSocket("ws://localhost:3443", "echo-protocol");
 
-        websocket.onopen = function () {
+    function getAlerts() {
+        return $http.get('http://localhost:8080/api/sos')
+    }
+
+    setTimeout(function () {
+        setInterval(function () {
+            getAlerts()
+                .then(function (response) {
+                    vm.somebodyNeedHelp = response.data.hasAlert
+                })
+        }, 3000)
+    }, 3000)
+
+
+    return vm
+}])
+
+/**
+ * vm.test = 'w21'
+
+    registerwebSocketSocorrista()
+
+    function registerwebSocketSocorrista() {
+        vm.webSocketSocorrista = new WebSocket("ws://localhost:3443", "echo-protocol");
+        vm.webSocketPaciente = new WebSocket("ws://localhost:3443", "echo-protocol");
+
+        vm.webSocketSocorrista.onopen = function () {
             console.log('conexao aberta')
         };
 
-        websocket.onmessage = function (evt) {
+        vm.webSocketPaciente.onopen = function () {
+            console.log('conexao aberta')
+        };
+
+        vm.webSocketPaciente.onmessage = function (evt) {
             console.log('conexao onmessage')
             vm.somebodyNeedHelp = true
         };
 
-        websocket.onerror = function (evt) {
+        vm.webSocketSocorrista.onerror = function (evt) {
+            console.log('onerror')
+        };
+
+        vm.webSocketPaciente.onerror = function (evt) {
             console.log('onerror')
         };
     }
+    const firstTime = true
 
-    return vm
-}])
+    function sendMessage() {
+        // if (firstTime) {
+        //     vm.webSocketPaciente.send({
+        //         from: 'paciente',
+        //         content: 'asdfasdfasdf'
+        //     })
+        //     firstTime= false
+        // }
+        console.log('websocket sedMessage')
+        vm.webSocketPaciente.send({
+            from: 'paciente',
+            content: 'Test'
+        })
+    }
+ */

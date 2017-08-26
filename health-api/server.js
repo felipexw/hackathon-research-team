@@ -10,11 +10,13 @@ var express = require('express'),
     ip = require('ip'),
     http = require('http'),
     //https = require('https'),
-    os = require("os");
+    os = require("os"),
+    Heartbeat = require('./heartbeat.js');
 
 var httpPort = 8080;
-
 var app = express();
+
+var heartbeat = new Heartbeat();
 
 //var options = {
 //    key: fs.readFileSync('privkey.pem'),
@@ -45,7 +47,25 @@ app.get('/api/server', function(request, response) {
     });
 });
 
-app.get('/api/health/heartbeat-alert', function(request, response) {
+app.post('/api/heartbeat/arrhythmia', function(request, response) {
+    heartbeat.startArrhythmia();
+    return response.json({
+          "statusCode": 200,
+          "message": os.hostname() + ' - Internal IP ' + ip.address()
+    });
+});
+
+app.post('/api/heartbeat/bradycardia', function(request, response) {
+    heartbeat.startBradycardia();
+    return response.json({
+          "statusCode": 200,
+          "message": os.hostname() + ' - Internal IP ' + ip.address()
+    });
+});
+
+
+app.post('/api/heartbeat/normal', function(request, response) {
+    heartbeat.startNormal();
     return response.json({
           "statusCode": 200,
           "message": os.hostname() + ' - Internal IP ' + ip.address()
@@ -59,4 +79,5 @@ app.get('/api/health/heartbeat-alert', function(request, response) {
 
 http.createServer(app).listen(httpPort, function(){
     console.log(ip.address() + ' listening at ' +  httpPort);
+    heartbeat.simulate();
 });

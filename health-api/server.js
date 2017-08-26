@@ -21,14 +21,14 @@ var app = express();
 //};
 
 app.set('port', httpPort);
-//app.set('host', process.env.NODE_IP || 'localhost');
+app.set('host', process.env.NODE_IP || 'localhost');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use(express.static(path.join(__dirname, '/public')));
+//app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/api/ping', function(request, response) {
     return response.json({
@@ -44,11 +44,24 @@ app.get('/api/server', function(request, response) {
     });
 });
 
+
+/**
+ * API de emergência
+ */
+app.post('/api/emergency', function(request, response) {    
+    const userName = request.body.name;
+    return response.json({
+          "statusCode": 200,
+          "message": "Paciente " + userName + " solicitou emergência"
+    });
+});
+
+
 //=============================== MAIN ===============================
 //https.createServer(options, app).listen(httpPort, function(){
 //    console.log(ip.address() + ' listening at ' +  httpPort);
 //});
 
-https.createServer(app).listen(httpPort, function(){
-    console.log(ip.address() + ' listening at ' +  httpPort);
-});
+app.listen(httpPort, function(){
+    console.log('LISTENING 8080')
+})

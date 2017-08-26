@@ -1,22 +1,48 @@
-<!DOCTYPE html>
-<html lang="en" ng-app>
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"> 
-        
-    </head>
-    <body>
-        <!--script src="../node_modules/bootstrap/js/"></script-->
-        <script src="../node_modules/angular/angular.js"></script>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                <div class="alert alert-info">asdfasdfasdfasdfasdfasfdasdfasdfasdf</div>
-            </div>
+<html>
+
+<head>
+
+    <link href="/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/vendor/angular/angular.js"></script>
+    <script src="js/angular-app.js"></script>
+
+    <style>
+        @media (min-width: 768px) {
+            .b-col {
+                float: right;
+            }
+        }
+
+        .margin-20 {
+            margin: 20px;
+        }
+
+        .pull-left {
+            float: left !important;
+        }
+
+        .margin-20 {
+            margin: 20px
+        }
+    </style>
+</head>
+
+<body ng-app="app-socorrista">
+    <div class="container" ng-controller="AppCtrl as vm">
+        <div class="row">
+            <div class="col-md-12 margin-20" ng-if="vm.somebodyNeedHelp">
+                <div class="alert alert-danger">
+                    Alguém pediu ajuda
+                </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
 
+    <div ng-include="'patientDetail2.html'"></div>
+
+</body>
+
+</html>

@@ -53,6 +53,7 @@ app.get('/api/server', function(request, response) {
 
 app.post('/api/heartbeat/arrhythmia', function(request, response) {
     heartbeat.startArrhythmia();
+    avisaSocorrista("Arritimia do paciente Pedro Augusto");
     return response.json({
           "statusCode": 200,
           "message": os.hostname() + ' - Internal IP ' + ip.address()
@@ -61,6 +62,7 @@ app.post('/api/heartbeat/arrhythmia', function(request, response) {
 
 app.post('/api/heartbeat/bradycardia', function(request, response) {
     heartbeat.startBradycardia();
+    avisaSocorrista("Batimentos muito lentos do paciente Pedro Augusto");
     return response.json({
           "statusCode": 200,
           "message": os.hostname() + ' - Internal IP ' + ip.address()
@@ -130,6 +132,15 @@ function originIsAllowed(origin) {
   // put logic here to detect whether the specified origin is allowed.
   return true;
 }
+
+function avisaSocorrista(message) {
+    if (socorrista != null) {
+        socorrista.sendUTF(message);
+        console.log("Avisando o socorrista sobre " + message);
+    } else {
+        console.log("Nenhum socorrista está conectado!");
+    }
+}
          
 wsServer.on('request', function(request) {
     if (!originIsAllowed(request.origin)) {
@@ -143,13 +154,20 @@ wsServer.on('request', function(request) {
 
 	var clientId = connections;
 	clients[clientId] = connection;
-	connections++;
+    connections++;
+    
+    var socorrista = null;
 
 	//registrar um callback na função de recebimento do webservice
     log('Connection accepted - clientId: ' + clientId);
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
             log('websocket: Received Message: ' + message.utf8Data);
+
+            //{from: "socorrista", msg: ""}
+            if (message.utf8Data.from === 'socorrista') {
+                socorrista = connection;
+            }
 
             //connection.sendUTF(message.utf8Data);
             processMessage(message, connection);

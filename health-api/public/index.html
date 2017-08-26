@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Simple Server</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+    <script>
+      $(document).ready(function(){
+        $("#server-info").html("Loading server name...");
+        $.get("/api/server", function( data ) {
+          $("#server-info").html('Greetings from node ' + data);
+        });
+
+      });
+
+    </script>
+  </head>
+    <div id="server-info"></div>
+  <body>
+  </body>
+</html>

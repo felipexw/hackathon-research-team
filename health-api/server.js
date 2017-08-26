@@ -8,7 +8,8 @@ var express = require('express'),
     moment = require('moment'),
     request = require('request'),
     ip = require('ip'),
-    https = require('https'),
+    http = require('http'),
+    //https = require('https'),
     os = require("os");
 
 var httpPort = 8080;
@@ -44,11 +45,18 @@ app.get('/api/server', function(request, response) {
     });
 });
 
+app.get('/api/health/heartbeat-alert', function(request, response) {
+    return response.json({
+          "statusCode": 200,
+          "message": os.hostname() + ' - Internal IP ' + ip.address()
+    });
+});
+
 //=============================== MAIN ===============================
 //https.createServer(options, app).listen(httpPort, function(){
 //    console.log(ip.address() + ' listening at ' +  httpPort);
 //});
 
-https.createServer(app).listen(httpPort, function(){
+http.createServer(app).listen(httpPort, function(){
     console.log(ip.address() + ' listening at ' +  httpPort);
 });

@@ -1,8 +1,13 @@
 const myApp = angular.module('app-socorrista', []);
 
 myApp.controller('AppCtrl', ['$scope', '$http', ($scope, $http) => {
-    let vm = this
-    vm.showInfo = false
+    let vm = this;
+    vm.showInfo = false;
+    vm.alerts = 0;
+
+    vm.socorrer = function() {
+        vm.alerts = 0;
+    }
 
 
     function getAlerts() {
@@ -14,7 +19,10 @@ myApp.controller('AppCtrl', ['$scope', '$http', ($scope, $http) => {
             getAlerts()
                 .then(function (response) {
                     vm.somebodyNeedHelp = response.data.hasAlert
-                    vm.showInfo = !vm.somebodyNeedHelp
+                    if (vm.somebodyNeedHelp) {
+                        vm.alerts += 1;
+                    }
+                    
                 })
         }, 3000)
     }, 3000)

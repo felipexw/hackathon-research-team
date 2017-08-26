@@ -33,15 +33,23 @@
 <body ng-app="app-socorrista">
     <div class="container" ng-controller="AppCtrl as vm">
         <div class="row">
-            <div class="col-md-12 margin-20" ng-if="vm.somebodyNeedHelp">
+            <div class="col-md-12 margin-20" ng-if="vm.alerts > 0">
                 <div class="alert alert-danger">
                     Alguém pediu ajuda
                 </div>
+                <div ng-include="'patientDetail2.html'"></div>
+                <button class="btn btn-danger btn-block" ng-click="vm.socorrer()">Socorrer</button>
             </div>
         </div>
-    </div>
+         <div class="alert alert-info" ng-if="vm.alerts === 0">        
+        
+        <h1 style="text-align:center;">Nenhuma solicitação no momento.</h1>
+        
+    <div>
 
-    <div ng-if="!vm.somebodyNeedHelp" ng-include="'patientDetail2.html'"></div>
+    </div>
+   
+  
 
 </body>
 

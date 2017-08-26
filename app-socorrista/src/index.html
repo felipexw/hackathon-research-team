@@ -6,41 +6,32 @@
 
     <script src="/vendor/jquery/dist/jquery.min.js"></script>
     <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <script>
-        window.onload = function (e) {
-            recognition.start();
-            speak("Olá! Eu sou a Sara, posso lhe ajudar no pedido de emergência e apresentar seu histórico médico!");
-        }
-    </script>
+    <script src="/vendor/angular/angular.js"></script>
+    <script src="js/angular-app.js"></script>    
+    
     <style>
         @media (min-width: 768px) {
             .b-col {
                 float: right;
             }
         }
+        .margin-20 {
+            margin: 20px;
+        }
     </style>
 </head>
 
-<body>
-    <div class="container">
+<body ng-app="app-socorrista">
+    <div class="container" ng-controller="AppCtrl as vm">
         <div class="row">
-            <div class="emergency col-sm-7">
-                <p>APP SOCORRISTA</p>
-            </div>
-            <div class="col-sm-5 b-col" style="background: blue; height: 600px;">
-                <p>B</p>
-            </div>
-            <div class="col-sm-7" style="background: red; height: 200px;">
-                <p>C</p>
-            </div>
-            <div class="col-sm-7" style="background: yellow; height: 200px;">
-                <p>D</p>
+            <div class="col-md-12 margin-20" ng-if="vm.somebodyNeedHelp">
+                <div class="alert alert-danger">
+                    ALGUEM PEDIU AJUDA
+                </div>
             </div>
         </div>
     </div>
-    <script src="js/recognition.js"></script>
-    <script src="js/synthesis.js"></script>
+    
 </body>
 
 </html>

@@ -1,0 +1,49 @@
+<html>
+
+<head>
+
+    <link href="/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        window.onload = function (e) {
+            recognition.start();
+            speak("Olá! Eu sou a Sara, posso lhe ajudar no pedido de emergência e apresentar seu histórico médico!");
+        }
+    </script>
+    <style>
+        @media (min-width: 768px) {
+            .b-col {
+                float: right;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="emergency col-sm-7">
+                <p>EMERGÊNCIA</p>
+            </div>
+            <div class="col-sm-5 b-col" style="background: blue; height: 600px;">
+                <p>B</p>
+            </div>
+            <div class="col-sm-7" style="background: red; height: 200px;">
+                <p>C</p>
+            </div>
+            <div class="col-sm-7" style="background: yellow; height: 200px;">
+                <p>D</p>
+            </div>
+        </div>
+    </div>
+
+    <link href="index.css" rel="stylesheet">
+
+    <script src="js/recognition.js"></script>
+    <script src="js/synthesis.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "app-idoso",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "path": "^0.12.7"
+  }
+}

@@ -6,12 +6,46 @@
 
     <script src="/vendor/jquery/dist/jquery.min.js"></script>
     <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
 
     <script>
         window.onload = function (e) {
             recognition.start();
             speak("Olá! Eu sou a Sara, posso lhe ajudar no pedido de emergência e apresentar seu histórico médico!");
         }
+
+        // Set the date we're counting down to
+        var countDownDate = new Date("Aug 27, 2017 10:00:00").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            if (countDownDate - now < 0) {
+                console.log(countDownDate);
+                countDownDate = new Date("Aug 28, 2017 10:00:00").getTime();
+            }
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
+
+            // If the count down is finished, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "EXPIRED";
+            }
+        }, 1000);
     </script>
     <style>
         @media (min-width: 768px) {
@@ -25,24 +59,54 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="emergency col-sm-7">
-                <a href="#" class="button dsgnmoo sosButton" onclick="sosClick()">CHAMAR EMERGÊNCIA</a>
-            </div>
-            <div class="col-sm-5 b-col" style="background: blue; height: 600px;">
+            <div class="col-sm-12" style="
+            margin-bottom: 20px;
+            margin-top: 20px;
+        ">
+
+                <a href="#" class="btn btn-default btn-block" onclick="sosClick()" style="
+            background-color: #fc575e; height: 110px; color: white; display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4vw;
+        ">CHAMAR EMERGÊNCIA</a>
 
             </div>
-            <div class="col-sm-7" style="background: red; height: 200px;">
-                <div class="row">
+
+            <div class="portlet col-sm-6 col-md-6 text-center">
+                <div class="row subportlet"  style="background: #66cc99">
+                    <i class="heartbeat fa fa-heartbeat fa-6x" aria-hidden="true"></i>
+                    <p id="beat">90</p>
+                    <button class="btn btn-default" onclick="startArrhythmia()">Simular Aritmia</button>
+                    <button class="btn btn-default" onclick="startBradycardia()">Simular Bradicardia</button>
+                </div>
+            </div>
+            <div class="portlet col-sm-6 col-md-6">
+                <div class="row subportlet" style="background: #44bbff">
+
                     <div class="col-xs-4">
-                        <img id="medicine" src="img/amoxilina.jpg">
+                        <img src="img/amoxilina.jpg" class="img-thumbnail">
                     </div>
                     <div class="col-xs-8">
-                        <p>PRÓXIMO MEDICAMENTO: AMOXILINA</p>
+                        <p class="n-medicine">PRÓXIMO MEDICAMENTO:</p>
+                        <p class="n-medicine">AMOXILINA</p>
+                        <small id="timer">15:22:58</small>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-7" style="background: yellow; height: 200px;">
-                <p>D</p>
+
+        </div>
+        <div class="row">
+            <div class="portlet col-sm-6 col-md-6">
+                <div class="row subportlet"  style="background: #f1c40f">
+                    <div class="col-xs-4">
+                        <img id="profile" src="img/profile.jpg">
+                    </div>
+                    <div id="infos" class="col-xs-8">
+                        <p>NOME: JORGE TORRES</p>
+                        <p>IDADE: 79 ANOS</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -51,7 +115,10 @@
 
     <script src="js/recognition.js"></script>
     <script src="js/synthesis.js"></script>
+    <script src="heartbeat.js"></script>
     <script src="index.js"></script>
+
+
 </body>
 
 </html>

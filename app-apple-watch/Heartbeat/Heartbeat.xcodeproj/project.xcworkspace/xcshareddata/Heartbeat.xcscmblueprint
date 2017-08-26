@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "361A691824C995ACCBE5001420450B6EEFB950D2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "361A691824C995ACCBE5001420450B6EEFB950D2" : 9223372036854775807,
+    "739FFE97BD4975FECBEF65F7E12F50511F2390E1" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "18FA60AF-E253-48EA-8E80-74009218CC65",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "361A691824C995ACCBE5001420450B6EEFB950D2" : "Heartbeat\/",
+    "739FFE97BD4975FECBEF65F7E12F50511F2390E1" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Heartbeat",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Heartbeat.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TheoBendixson\/Prancercise-Tracker-Starter.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "361A691824C995ACCBE5001420450B6EEFB950D2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:felipexw\/hackathon-research-team.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "739FFE97BD4975FECBEF65F7E12F50511F2390E1"
+    }
+  ]
+}

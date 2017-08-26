@@ -1,13 +1,19 @@
 {
-  "name": "app-socorrista",
+  "name": "app-idoso",
   "version": "1.0.0",
-  "description": "App socorrista",
+  "description": "",
   "main": "index.js",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "angular": "1.6.6",
-    "bootstrap": "3.3.7",
-    "finalhandler": "^1.0.4",
-    "serve-static": "^1.12.4"
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.4",
+    "jquery": "^3.2.1",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node app.js"
   }
 }

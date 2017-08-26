@@ -78,6 +78,28 @@ app.post('/api/heartbeat/normal', function(request, response) {
     });
 });
 
+var alerts = [];
+app.post('/api/sos', function(req, res){
+    alerts.push(1)
+    return res.json({
+          "statusCode": 200,
+          "hasAlert": alerts.length
+    });
+});
+
+app.get('/api/sos', function(req, res){
+    console.log('bateu')
+    let exists = false
+    if (alerts.length > 0){
+        exists = true
+        alerts.pop()
+    }
+    return res.json({
+          "statusCode": 200,
+          "hasAlert": exists
+    });
+});
+
 
 /**
  * API de emergência
@@ -187,7 +209,9 @@ wsServer.on('request', function(request) {
 var processMessage = function(message, connection) {
     //messgae is either null or undefined
     if (message !== null) {
-        var obj = JSON.parse(message.utf8Data);
+        console.log(message)
+        console.log(message.utf8Data)
+        var obj = message.utf8Data;
         if (obj.from === 'remote-control') {
             processRemoteControlMsg(obj, connection);
         } else if (obj.from === 'chat') {

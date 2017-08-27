@@ -28,6 +28,12 @@ p {
 
 .heartbeat {
     font-size: 80px;
+    color: red;   
+
+}
+
+#beat {
+    color: red
 }
 
 #infos p {
@@ -59,7 +65,6 @@ p {
 }
 
 .subportlet {
-    border: 1px solid #3e3e3e;
     padding: 10px;
     height: 180px;
 }

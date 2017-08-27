@@ -18,7 +18,6 @@ recognition.onresult = function(event) {
             // me ajuda
             // ajuda
             if (result.match(/socorro/ig) || result.match(/ajuda/ig)) {
-                speak("Chamando Emergência.");
                 sosClick();
             }
 

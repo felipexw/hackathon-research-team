@@ -1,4 +1,5 @@
 function sosClick(event) {
+    speak("Chamando Emergência.");
     $.ajax({
         type: "POST",
         url: 'http://localhost:8080/api/sos',

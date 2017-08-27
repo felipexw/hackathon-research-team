@@ -19,6 +19,7 @@ recognition.onresult = function(event) {
             // ajuda
             if (result.match(/socorro/ig) || result.match(/ajuda/ig)) {
                 speak("Chamando Emergência.");
+                sosClick();
             }
 
             // quando de tomar remédio
@@ -48,4 +49,6 @@ recognition.onerror = function(event) {
 
 recognition.onend = function() {
     console.log("end!!");
+    recognition.stop();
+    recognition.start();
 };

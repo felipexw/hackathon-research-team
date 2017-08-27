@@ -13,6 +13,7 @@
 
 p {
     font-size: 30px;
+    font-family: 'Signika', 'Raleway', 'Helvetica Neue', sans-serif;
 }
 
 #timer {
@@ -56,6 +57,13 @@ p {
 {
     .n-medicine {
         font-size: 4.1vw;
+    }
+}
+
+@media (max-width: 600px) 
+{
+    h1 {
+        font-size: 30px;
     }
 }
 

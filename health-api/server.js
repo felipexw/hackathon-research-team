@@ -80,7 +80,8 @@ app.post('/api/heartbeat/normal', function(request, response) {
 
 var alerts = [];
 app.post('/api/sos', function(req, res){
-    alerts.push(1)
+    alerts.push(1);
+    console.log("Alguém pediu ajuda!!!");
     return res.json({
           "statusCode": 200,
           "hasAlert": alerts.length

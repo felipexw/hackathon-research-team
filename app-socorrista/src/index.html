@@ -16,8 +16,23 @@
             }
         }
 
+        .thumb {
+            width: 60px;
+            height: 60px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
         .margin-20 {
             margin: 20px;
+        }
+        
+        .margin-top-20 {
+            margin-top: 20px;
         }
 
         .pull-left {
@@ -33,24 +48,24 @@
 <body ng-app="app-socorrista">
     <div class="container" ng-controller="AppCtrl as vm">
         <div class="row">
-            <div class="col-md-12 margin-20" ng-if="vm.alerts > 0">
+            <div class="col-xs-12 col-sm-12 margin-20" ng-if="vm.alerts > 0">
                 <div class="alert alert-danger">
                     Alguém pediu ajuda
                 </div>
-                <div ng-include="'patientDetail2.html'"></div>
-                <button class="btn btn-danger btn-block" ng-click="vm.socorrer()">Socorrer</button>
+                <div ng-include="'patientDetail2.html'"></div>       
+                <button class="margin-top-20 btn btn-danger btn-block" ng-click="vm.socorrer()">Socorrer</button>         
             </div>
         </div>
-         <div class="alert alert-info" ng-if="vm.alerts === 0">        
-        
-        <h1 style="text-align:center;">Nenhuma solicitação no momento.</h1>
-        
-    <div>
 
+        <!--PAINEL CENTRAL-->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 margin-20">
+                <div class="alert alert-info" ng-if="vm.alerts === 0">
+                    <h1 style="text-align:center;">Nenhuma solicitação no momento.</h1>
+                </div>
+            </div>
+        </div>
     </div>
-   
-  
-
 </body>
 
 </html>
